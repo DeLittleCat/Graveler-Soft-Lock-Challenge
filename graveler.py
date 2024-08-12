@@ -13,4 +13,4 @@ def main(executions):
     print("Most Ones Rolled:", best if best < 177 else 177, "\nNumber of Executions:", executions)
 
 
-if __name__ == "__main__": startTime=time(); main(1000); print("Done in:",time()-startTime,"s")
+if __name__ == "__main__": startTime=time(); main(1000000000); print("Done in:",time()-startTime,"s")
