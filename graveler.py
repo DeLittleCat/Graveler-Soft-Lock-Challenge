@@ -10,7 +10,7 @@ def main(executions):
         ones, thread = np.sum(np.random.randint(1, 5, size=231) == 1), nb.get_thread_id()
         if ones > threadBests[thread]: threadBests[thread] = ones
     best = np.max(threadBests)
-    print("Most Ones Rolled:", best if best < 177 else 177, "\nNumber of Executions:", executions)
+    print("Most Ones Rolled:", min(best, 177), "\nNumber of Executions:", executions)
 
 
 if __name__ == "__main__": startTime=time(); main(1000000000); print("Done in:",time()-startTime,"s")
