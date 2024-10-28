@@ -32,49 +32,39 @@
 # - When computing the PMF, particularly for very small probabilities, floating point errors may slightly 
 #   distort the actual probability values.
 # - Random numbers generated using typical PRNGs are also subject to floating point precision issues, meaning the
-#   simulation is not perfectly fair, as it is granular, unlike their pure math counterpart.
+#   simulation is not perfectly fair, as it is granular, unlike their pure math counterpart. Here, this limits you
+#   to getting at most 116, since beyond that the float is the same.
 #
 # In practice, these floating point errors are small, but they are present and unavoidable. The impact is minimal 
 # for most cases, but at extremely high or low probabilities, they can lead to slight inaccuracies in how the 
 # paralyzation counts are determined.
 #
 # Basic Flow:
-# - Make array of factorials
-# - Make array of probability masses using the array of factorials
+# - Load array of cumulative probabilities from file
 # - Find the largest of 1 billion random numbers 0-1
-# - Make array of cumulative probabilities using the array of probability masses
 # - Find the index of that number in the array of cumulative probabilities, or the closest below it
 #   (searchsorted goes up, so I couldn't one line it :sadge:)
-# - The final result is capped at 177 paralyzations, as that is the required threshold to escape.
+# - The final result is capped at 116 paralyzations, as that is where float64 breaks.
 #
 # Written majoritively by ChatGPT.
 
 
+import os
 import numpy as np
 import numba as nb
 from timeit import timeit
 
 
-@nb.njit(nb.f8(nb.u4))
-def maxRand(rolls: int) -> float:
+@nb.njit(nb.void(nb.f8[:]))
+def main(cdArray: list) -> None:
     threadMaxes = np.zeros(nb.get_num_threads(), dtype=np.float64)
-    for _ in nb.prange(rolls):
+    for _ in nb.prange(1000000000):
         rand, thread = np.random.uniform(), nb.get_thread_id()
         if rand > threadMaxes[thread]: threadMaxes[thread] = rand
-    return np.max(threadMaxes)
-
-@nb.njit(nb.void(nb.f8[:], nb.f8, nb.u4))
-def printSearch(pdArray: list, flo: float, executions: int) -> None:
-    cdArray = np.cumsum(pdArray)
+    flo = np.max(threadMaxes)
     ind = np.searchsorted(cdArray, flo)
-    if cdArray[ind] != flo: ind -= 1
-    print("Most Paralyzations:", min(ind, 177), "\nNumber of Executions:", executions)
-
-def main(executions: int) -> None:
-    fac = np.arange(0, 232, dtype=object)
-    fac[0] = 1
-    fac = np.cumprod(fac)
-    printSearch(np.array(3 ** np.arange(0, 232, dtype=object)[::-1] * fac[231] / (fac * fac[::-1] * 4 ** 231), dtype=np.float64), maxRand(executions), executions)
+    if cdArray[ind] != flo and ind: ind -= 1
+    print("Most Paralyzations:", ind, "\nNumber of Executions: 1000000000")
 
 
-if __name__ == "__main__": print("Done in:", timeit(globals=globals(), stmt="main(1E9)", number=1), "s")
+if __name__ == "__main__": print("Done in:", timeit(globals=globals(), stmt=r"main(np.load(os.path.join(os.path.dirname(__file__), 'cdArray.npy')))", number=1), "s")
