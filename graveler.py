@@ -1,54 +1,3 @@
-# Please read this before the code, or at least the basic flow at the bottom of this wall of text
-# Probability Mass Function (PMF):
-# The probability mass function (PMF) models the likelihood of observing exactly k paralyzations (0 <= k <= 231) 
-# in 231 trials. This was used in the video. P.S. It helped a lot with this idea :widepeepoHappy:
-#
-#     PM(k) = (0.25^k * 0.75^(231-k)) * (231! / (k! * (231-k)!))
-#
-# This formula calculates the exact probability of getting exactly k paralyzations out of 231 moves.
-# For numerical stability, it can be rewritten as:
-#
-#     PM(k) = (3^(231-k) * 231!) / (k! * (231-k)! * 4^231)
-#
-# Cumulative Density Function (CDF):
-# The cumulative density function (CDF) is the running sum of the PMF values. It represents the probability 
-# of observing k or fewer paralyzations. For example, CD(177) gives the cumulative probability of getting 
-# up to 177 paralyzations.
-#
-# Proving Random Number Comparison with CDF:
-# To determine how many paralyzations occur in a given escape attempt, we compare a random number (between 0 and 1) 
-# to the CDF values. Since the CDF is a cumulative probability, each CDF(k) gives the probability of getting 
-# up to k paralyzations. By finding the first CDF value greater than or equal to the random number, we can identify 
-# the corresponding number of paralyzations.
-#
-# This works because the CDF partitions the [0, 1] range into intervals, each corresponding to a specific number 
-# of paralyzations. For instance:
-# - If a random number falls between CD(k-1) and CD(k), this means the number of paralyzations is k-1.
-# - The search for the random number in the CDF directly maps the random probability to the number of paralyzations.
-#
-# Floating Point Precision Considerations:
-# Floating point precision errors can arise both in the calculation of the PMF and in the generation of random 
-# numbers (due to limitations of floating point in general). These errors can affect the fairness of the simulation:
-# - When computing the PMF, particularly for very small probabilities, floating point errors may slightly 
-#   distort the actual probability values.
-# - Random numbers generated using typical PRNGs are also subject to floating point precision issues, meaning the
-#   simulation is not perfectly fair, as it is granular, unlike their pure math counterpart. Here, this limits you
-#   to getting at most 116, since beyond that the float is the same.
-#
-# In practice, these floating point errors are small, but they are present and unavoidable. The impact is minimal 
-# for most cases, but at extremely high or low probabilities, they can lead to slight inaccuracies in how the 
-# paralyzation counts are determined.
-#
-# Basic Flow:
-# - Load array of cumulative probabilities from file
-# - Find the largest of 1 billion random numbers 0-1
-# - Find the index of that number in the array of cumulative probabilities, or the closest below it
-#   (searchsorted goes up, so I couldn't one line it :sadge:)
-# - The final result is capped at 116 paralyzations, as that is where float64 breaks.
-#
-# Written majoritively by ChatGPT.
-
-
 import os
 import numpy as np
 import numba as nb
@@ -61,10 +10,8 @@ def main(cdArray: list) -> None:
     for _ in nb.prange(1000000000):
         rand, thread = np.random.uniform(), nb.get_thread_id()
         if rand > threadMaxes[thread]: threadMaxes[thread] = rand
-    flo = np.max(threadMaxes)
-    ind = np.searchsorted(cdArray, flo)
-    if cdArray[ind] != flo and ind: ind -= 1
-    print("Most Paralyzations:", ind, "\nNumber of Executions: 1000000000")
+    ind = np.searchsorted(cdArray, np.max(threadMaxes))
+    print("Most Paralyzations:", ind-1 if ind != 0 else ind, "\nNumber of Executions: 1000000000")
 
 
 if __name__ == "__main__": print("Done in:", timeit(globals=globals(), stmt=r"main(np.load(os.path.join(os.path.dirname(__file__), 'cdArray.npy')))", number=1), "s")
