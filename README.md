@@ -4,7 +4,7 @@ Source code (and data) of my implementations for this challenge.
 
 # How to use
 
-Put the algorithm you want to run in your python folder, along with its respective npy file. Now run the chosen python file in console or even IDLE. If you want to make your own, run makeBARRAY in the python folder; it will make both. Yes, that's all you need to do!
+Put the algorithm you want to run in your python folder, along with its respective npy file. Now run the chosen python file in console or even IDLE. If you want to make your own, run makeBARRAY in the python folder; it will make both. Both are dependant on numba and timeit, so pip install them if you haven't already. Yes, that's all you need to do!
 
 # Algorithms
 
