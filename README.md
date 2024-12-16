@@ -12,7 +12,7 @@ Compilation time is not included in Runtime. Runtime is measured for 4x 1.1GHz
 | Algorithm | Runtime | Time Complexity |
 | :-------- | :------ | :-------------- |
 | MultiThreaded BARRAY(MTB) | $14.91959649999626 s$ | $O(\frac{N}{T})$ |
-| Power Transformed BARRAY(PTB) | $0.029008161963973 s$ | $O(\log2N)$ |
+| Power Transformed BARRAY(PTB) | $0.029008161963973 s$ | $O(log_2N)$ |
 
 ## MultiThreaded BARRAY
 
