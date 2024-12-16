@@ -32,11 +32,11 @@ $$\text{Find}(\text{BCD}^{n}, u) = \text{Find}(\text{BCD}, u^{\frac{1}{n}})\newl
 
 Makes both BARRAYs by the following.
 
-$$\text{BCD}(\text{length}, (a, b)) = \left\{S_k \ \middle| \ S_k = \sum_{i=0}^k \frac{q^i \cdot n!}{b^n \cdot i! \cdot (n-i)!} \ \right\}, \ k \in \{0, 1, \dots, n\}\newline$$
+$$\text{BCD}(\text{length}, (a, b)) = \{S_k \ | \ S_k = \sum_{i=0}^k \frac{q^i \cdot n!}{b^n \cdot i! \cdot (n-i)!} \ \}, \ k \in \{0, 1, \dots, n\}\newline$$
    where:
       $q = b - a\newline$
       $n = \text{length} - 1\newline$
-$$\text{MTB} = \left\{ x \ \middle| \ x \in \text{Round}(\text{BCD}) \ \wedge \ 0 < x < 1 \right\}\newline$$
-$$\text{PTB}(\text{trials}) = \left\{ x \ \middle| \ x \in \text{Round}(\text{BCD}^{\text{trials}}) \ \wedge \ 0 < x < 1 \right\}\newline$$
+$$\text{MTB} = \{ x \ | \ x \in \text{Round}(\text{BCD}) \ \wedge \ 0 < x < 1 \}\newline$$
+$$\text{PTB}(\text{trials}) = \{ x \ | \ x \in \text{Round}(\text{BCD}^{\text{trials}}) \ \wedge \ 0 < x < 1 \}\newline$$
    where:
       $\text{Round}(S) \text{ returns the set of the elements of }S\text{ as the nearest IEEE 754 double.}\newline$
