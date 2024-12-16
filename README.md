@@ -1,6 +1,6 @@
 # The Unlikely Escape
 
-Source code (and data) of my implementations for this challenge.
+Source code (and data) of my implementations for this challenge. Sorry the math looks bad, GitHub's \LaTeX/\KaTeX rendering is garbo.
 
 # How to use
 
