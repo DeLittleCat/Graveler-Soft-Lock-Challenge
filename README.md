@@ -44,6 +44,7 @@ $$\text{BCD}(\text{length}, (a, b)) = \{S_k \ | \ S_k = \sum_{i=0}^k \frac{q^i \
       <br>
       $n = \text{length} - 1\newline$
       <br>
+      <br>
 $$\text{MTB} = \{ x \ | \ x \in \text{Round}(\text{BCD}) \ \wedge \ 0 < x < 1 \}$$
 <br>
 $$\text{PTB}(\text{trials}) = \{ x \ | \ x \in \text{Round}(\text{BCD}^{\text{trials}}) \ \wedge \ 0 < x < 1 \}$$
