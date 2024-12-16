@@ -22,21 +22,21 @@ A multithreaded max uniform finder. The N for time complexity is the amount of t
 
 A transformed BALIAS for one uniform. The N for time complexity is the amount of elements in the array, due to searchsorted. For most purposes, it is $O(1)$, since there will only be $27$ elements in the array, possibly more if you increase precision.
 
-$$u^{\frac{1}{n}} = \text{Max}(\{u_0, u_1,..., u_999999999\})$$\newline
-$$\text{Find}(\text{BCD}^{n}, u) = \text{Find}(\text{BCD}, u^{\frac{1}{n}})$$\newline
+$$u^{\frac{1}{n}} = \text{Max}(\{u_0, u_1,..., u_999999999\})\newline$$
+$$\text{Find}(\text{BCD}^{n}, u) = \text{Find}(\text{BCD}, u^{\frac{1}{n}})\newline$$
    where:
-      $\text{Max}(S) \text{ returns the greatest element of }S\text{.}$\newline
-      $\text{Find}(S, U) \text{ returns the position of the first element of }S\text{ greater than or equal to }U\text{.}$\newline
+      $\text{Max}(S) \text{ returns the greatest element of }S\text{.}\newline$
+      $\text{Find}(S, U) \text{ returns the position of the first element of }S\text{ greater than or equal to }U\text{.}\newline$
 
 ## Building BARRAY
 
 Makes both BARRAYs by the following.
 
-$$\text{BCD}(\text{length}, (a, b)) = \left\{S_k \ \middle| \ S_k = \sum_{i=0}^k \frac{q^i \cdot n!}{b^n \cdot i! \cdot (n-i)!} \ \right\}, \ k \in \{0, 1, \dots, n\}$$\newline
+$$\text{BCD}(\text{length}, (a, b)) = \left\{S_k \ \middle| \ S_k = \sum_{i=0}^k \frac{q^i \cdot n!}{b^n \cdot i! \cdot (n-i)!} \ \right\}, \ k \in \{0, 1, \dots, n\}\newline$$
    where:
-      $q = b - a$\newline
-      $n = \text{length} - 1$\newline
-$$\text{MTB} = \left\{ x \ \middle| \ x \in \text{Round}(\text{BCD}) \ \wedge \ 0 < x < 1 \right\}$$\newline
-$$\text{PTB}(\text{trials}) = \left\{ x \ \middle| \ x \in \text{Round}(\text{BCD}^{\text{trials}}) \ \wedge \ 0 < x < 1 \right\}$$\newline
+      $q = b - a\newline$
+      $n = \text{length} - 1\newline$
+$$\text{MTB} = \left\{ x \ \middle| \ x \in \text{Round}(\text{BCD}) \ \wedge \ 0 < x < 1 \right\}\newline$$
+$$\text{PTB}(\text{trials}) = \left\{ x \ \middle| \ x \in \text{Round}(\text{BCD}^{\text{trials}}) \ \wedge \ 0 < x < 1 \right\}\newline$$
    where:
-      $\text{Round}(S) \text{ returns the set of the elements of }S\text{ as the nearest IEEE 754 double.}$\newline
+      $\text{Round}(S) \text{ returns the set of the elements of }S\text{ as the nearest IEEE 754 double.}\newline$
