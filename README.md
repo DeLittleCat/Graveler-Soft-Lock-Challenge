@@ -11,42 +11,32 @@ Put the algorithm you want to run in your python folder, along with its respecti
 Compilation time is not included in Runtime. Runtime is measured for 4x 1.1GHz
 | Algorithm | Runtime | Time Complexity |
 | :-------- | :------ | :-------------- |
-| MultiThreaded BARRAY(MTB) | $'14.91959649999626 s'$ | $'O(\frac{N}{T})'$ |
-| Power Transformed BARRAY(PTB) | $'0.029008161963973 s'$ | $'O(\log2N)'$ |
+| MultiThreaded BARRAY(MTB) | $14.91959649999626 s$ | $O(\frac{N}{T})$ |
+| Power Transformed BARRAY(PTB) | $0.029008161963973 s$ | $O(\log2N)$ |
 
 ## MultiThreaded BARRAY
 
-A multithreaded max uniform finder. The N for time complexity is the amount of trials($'1000000000'$); T is the amount of threads your CPU has.
+A multithreaded max uniform finder. The N for time complexity is the amount of trials($1000000000$); T is the amount of threads your CPU has.
 
 ## Power Transformed BARRAY
 
-A transformed BALIAS for one uniform. The N for time complexity is the amount of elements in the array, due to searchsorted. For most purposes, it is $'O(1)'$, since there will only be $'27'$ elements in the array, possibly more if you increase precision.
+A transformed BALIAS for one uniform. The N for time complexity is the amount of elements in the array, due to searchsorted. For most purposes, it is $O(1)$, since there will only be $27$ elements in the array, possibly more if you increase precision.
 
-'''math
-u^{\frac{1}{n}} = \text{Max}(\{u_0, u_1,..., u_9_9_9_9_9_9_9_9_9\})
-'''
-'''math
-\text{Find}(\text{BCD}^{n}, u) = \text{Find}(\text{BCD}, u^{\frac{1}{n}})
-'''
+$$u^{\frac{1}{n}} = \text{Max}(\{u_0, u_1,..., u_9_9_9_9_9_9_9_9_9\})$$
+$$\text{Find}(\text{BCD}^{n}, u) = \text{Find}(\text{BCD}, u^{\frac{1}{n}})$$
    where:
-      $'\text{Max}(S) \text{ returns the greatest element of }S\text{.}'$
-      $'\text{Find}(S, U) \text{ returns the position of the first element of }S\text{ greater than or equal to }U\text{.}'$
+      $\text{Max}(S) \text{ returns the greatest element of }S\text{.}$
+      $\text{Find}(S, U) \text{ returns the position of the first element of }S\text{ greater than or equal to }U\text{.}$
 
 ## Building BARRAY
 
 Makes both BARRAYs by the following.
 
-'''math
-\text{BCD}(\text{length}, (a, b)) = \left\{S_k \ \middle| \ S_k = \sum_{i=0}^k \frac{q^i \cdot n!}{b^n \cdot i! \cdot (n-i)!} \ \right\}, \ k \in \{0, 1, \dots, n\}
-'''
+$$\text{BCD}(\text{length}, (a, b)) = \left\{S_k \ \middle| \ S_k = \sum_{i=0}^k \frac{q^i \cdot n!}{b^n \cdot i! \cdot (n-i)!} \ \right\}, \ k \in \{0, 1, \dots, n\}$$
    where:
-      $'q = b - a'$
-      $'n = \text{length} - 1'$
-'''math
-\text{MTB} = \left\{ x \ \middle| \ x \in \text{Round}(\text{BCD}) \ \wedge \ 0 < x < 1 \right\}
-'''
-'''math
-\text{PTB}(\text{trials}) = \left\{ x \ \middle| \ x \in \text{Round}(\text{BCD}^{\text{trials}}) \ \wedge \ 0 < x < 1 \right\}
-'''
+      $q = b - a$
+      $n = \text{length} - 1$
+$$\text{MTB} = \left\{ x \ \middle| \ x \in \text{Round}(\text{BCD}) \ \wedge \ 0 < x < 1 \right\}$$
+$$\text{PTB}(\text{trials}) = \left\{ x \ \middle| \ x \in \text{Round}(\text{BCD}^{\text{trials}}) \ \wedge \ 0 < x < 1 \right\}$$
    where:
-      $'\text{Round}(S) \text{ returns the set of the elements of }S\text{ as the nearest IEEE 754 double.}'$
+      $\text{Round}(S) \text{ returns the set of the elements of }S\text{ as the nearest IEEE 754 double.}$
