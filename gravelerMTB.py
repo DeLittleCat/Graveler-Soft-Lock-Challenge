@@ -11,7 +11,7 @@ def main(cdArray: list) -> None:
         rand, thread = np.random.uniform(), nb.get_thread_id()
         if rand > threadMaxes[thread]: threadMaxes[thread] = rand
     ind = np.searchsorted(cdArray, np.max(threadMaxes))
-    print("Most Paralyzations:", ind - 1 if ind != 0 else ind, "\nNumber of Executions: 1000000000")
+    print("Most Paralyzations:", ind, "\nNumber of Executions: 1000000000")
 
 
 if __name__ == "__main__": print("Done in:", timeit(globals=globals(), stmt=r"main(np.load(os.path.join(os.path.dirname(__file__), 'cdArrayMTB.npy')))", number=1), "s")
