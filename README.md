@@ -30,7 +30,7 @@ $$\text{Find}(\text{BCD}^{n}, u) = \text{Find}(\text{BCD}, u^{\frac{1}{n}})$$
       <br>
       $\text{Max}(S) \text{ returns the greatest element of }S\text{.}$
       <br>
-      $\text{Find}(S, U) \text{ returns the position of the first element of }S\text{ greater than or equal to }U\text{.}$
+      $\text{Find}(S, U) \text{ returns the position of the last element of }S\text{ lesser than }U\text{.}$
 
 ## Building BARRAY
 
