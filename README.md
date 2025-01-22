@@ -36,7 +36,7 @@ $$\text{Find}(\text{BCD}^{n}, u) = \text{Find}(\text{BCD}, u^{\frac{1}{n}})$$
 
 Makes both BARRAYs by the following.
 <br>
-$$\text{BCD}(\text{length}, (a, b)) = \{S_k \ | \ S_k = \sum_{i=0}^k \frac{q^i \cdot n!}{b^n \cdot i! \cdot (n-i)!} \ \}, \ k \in \{0, 1, \dots, n\}$$
+$$\text{BCD}(\text{length}, (a, b)) = \{S_k \ | \ S_k = \sum_{i=0}^k \frac{q^i \cdot n!}{b^n \cdot i! \cdot (n-i)!} \ \}, \ k \in \{0, 1, \dots, length\}$$
 <br>
    where:
       <br>
