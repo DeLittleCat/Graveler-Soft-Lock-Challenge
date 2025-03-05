@@ -22,7 +22,7 @@ A multithreaded max uniform finder. The N for time complexity is the amount of t
 
 A transformed BALIAS for one uniform. The N for time complexity is the amount of elements in the array, due to searchsorted. For most purposes, it is $O(1)$, since there will only be $27$ elements in the array, possibly more if you increase precision.
 <br>
-$$u^{\frac{1}{n}} = \text{Max}(\{u_0, u_1,..., u_{999999999}\})$$
+$$u^{\frac{1}{n}} = \text{Max}(\{u_0, u_1,..., u_{n-1}\})$$
 <br>
 $$\text{Find}(\text{BCD}^{n}, u) = \text{Find}(\text{BCD}, u^{\frac{1}{n}})$$
 <br>
