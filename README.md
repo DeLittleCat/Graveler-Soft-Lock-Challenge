@@ -21,34 +21,9 @@ A multithreaded max uniform finder. The N for time complexity is the amount of t
 ## Power Transformed BARRAY
 
 A transformed BALIAS for one uniform. The N for time complexity is the amount of elements in the array, due to searchsorted. For most purposes, it is $O(1)$, since there will only be $27$ elements in the array, possibly more if you increase precision.
-<br>
-$$u^{\frac{1}{n}} = \text{Max}(\{u_0, u_1,..., u_{n-1}\})$$
-<br>
-$$\text{Find}(\text{BCD}^{n}, u) = \text{Find}(\text{BCD}, u^{\frac{1}{n}})$$
-<br>
-   where:
-      <br>
-      $\text{Max}(S) \text{ returns the greatest element of }S\text{.}$
-      <br>
-      $\text{Find}(S, U) \text{ returns the position of the last element of }S\text{ lesser than }U\text{.}$
 
 ## Building BARRAY
 
-Makes both BARRAYs by the following.
+You can access a desmos version of the buidling process here.
 <br>
-$$\text{BCD}(\text{length}, (a, b)) = \{S_k \ | \ S_k = \sum_{i=0}^k \frac{q^i \cdot n!}{b^n \cdot i! \cdot (n-i)!} \ \}, \ k \in \{0, 1, \dots, n\}$$
-<br>
-   where:
-      <br>
-      $q = b - a\newline$
-      <br>
-      $n = \text{length} - 1\newline$
-      <br>
-      <br>
-$$\text{MTB} = \{ x \ | \ x \in \text{Round}(\text{BCD}) \ \wedge \ 0 < x < 1 \}$$
-<br>
-$$\text{PTB}(\text{trials}) = \{ x \ | \ x \in \text{Round}(\text{BCD}^{\text{trials}}) \ \wedge \ 0 < x < 1 \}$$
-<br>
-   where:
-      <br>
-      $\text{Round}(S) \text{ returns the set of the elements of }S\text{ as the nearest IEEE 754 double.}$
+https://www.desmos.com/calculator/cn6syebnbv
