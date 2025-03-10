@@ -1,6 +1,6 @@
 # The Unlikely Escape
 
-Source code (and data) of my implementations for this challenge. Sorry the math looks bad, GitHub's $\LaTeX$ rendering is horrific to work with. It also doesn't help this is my foray into set theory.
+Source code (and data) of my implementations for this challenge. I moved the math to Desmos, since GitHub's $\LaTeX$ rendering is horrific to work with and so I don't have to describe what I'm doing with sets.
 
 # How to use
 
