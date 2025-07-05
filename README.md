@@ -8,7 +8,7 @@ Put the algorithm you want to run in your python folder, along with its respecti
 
 # Algorithms
 
-Compilation time is not included in Runtime. Runtime is measured for 4x 1.1GHz
+Compilation time is not included in Runtime. Runtime is measured for 4x 1.1GHz.
 | Algorithm | Runtime | Time Complexity |
 | :-------- | :------ | :-------------- |
 | MultiThreaded BARRAY(MTB) | $14.91959649999626 s$ | $O(\frac{N}{T})$ |
@@ -16,14 +16,14 @@ Compilation time is not included in Runtime. Runtime is measured for 4x 1.1GHz
 
 ## MultiThreaded BARRAY
 
-A multithreaded max uniform finder. The N for time complexity is the amount of trials($1000000000$); T is the amount of threads your CPU has.
+A multithreaded psuedo-uniform random number generator that finds the largest number generated in the trials. The N for time complexity is the amount of trials($1000000000$); T is the amount of threads your CPU has. Both this and the other method use finite discrete distributions(namesaked as BARRAY) with binary search.
 
 ## Power Transformed BARRAY
 
-A transformed BALIAS for one uniform. The N for time complexity is the amount of elements in the array, due to searchsorted. For most purposes, it is $O(1)$, since there will only be $27$ elements in the array, possibly more if you increase precision.
+A transformed BARRAY to only need one psuedo-uniform random number. The N for time complexity is the amount of elements in the array. For most purposes, it is $O(1)$, since there will only be $41$ elements in the array, possibly more if you increase precision.
 
 ## Building BARRAY
 
-You can access a desmos version of the buidling process here.
+You can access a desmos version of the buidling process here, though it is technically different due to an update in my script.
 <br>
 https://www.desmos.com/calculator/cn6syebnbv
